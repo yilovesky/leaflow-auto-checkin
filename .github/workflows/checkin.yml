@@ -1,8 +1,8 @@
-name: KataBump Auto Renew
+name: Leaflow Auto Checkin
 
 on:
   schedule:
-    - cron: '0 1 * * *' # 北京时间 09:00
+    - cron: '0 1 * * *' # 每天UTC时间01:00运行（北京时间09:00）
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -30,8 +30,9 @@ jobs:
         
     - name: Run auto checkin
       env:
-        # 将 Secret 映射为代码所需的新变量名
-        KATABUMP_ACCOUNTS: ${{ secrets.LEAFLOW_ACCOUNTS }}
+        LEAFLOW_ACCOUNTS: ${{ secrets.LEAFLOW_ACCOUNTS }}
+        LEAFLOW_EMAIL: ${{ secrets.LEAFLOW_EMAIL }}
+        LEAFLOW_PASSWORD: ${{ secrets.LEAFLOW_PASSWORD }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         GITHUB_ACTIONS: true
